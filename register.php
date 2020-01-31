@@ -51,6 +51,14 @@ $MainContent .= "<input class='form-control' name='name' id='name'
                   type='text' required /> (required)";
 $MainContent .= "</div>";
 $MainContent .= "</div>";
+//birthdate 
+$MainContent .= "<div class='form-group row'>";
+$MainContent .= "<label class='col-sm-3 col-form-label' for='birthdate'>BirthDate ( YYYY-MM-DD format):</label>";
+$MainContent .= "<div class='col-sm-9'>";
+$MainContent .= "<input class='form-control' name='birthdate' id='birthdate' 
+                  type='text' required /> (required)";
+$MainContent .= "</div>";
+$MainContent .= "</div>";
 //address
 $MainContent .= "<div class='form-group row'>";
 $MainContent .= "<label class='col-sm-3 col-form-label' for='address'>Address:</label>";

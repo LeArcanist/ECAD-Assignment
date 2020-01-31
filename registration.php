@@ -5,6 +5,7 @@ $MainContent = "";
 
 //Read data from previous page
 $name= $_POST["name"];
+$birthdate= $_POST["birthdate"];
 $address= $_POST["address"];
 $country= $_POST["country"];
 $phone= $_POST["phone"];
@@ -23,8 +24,8 @@ $conn = new Mysql_Driver();
 $conn->connect();
 
 //define insert statement (sql)
-$qry = "INSERT INTO Shopper (Name, Address, Country, Phone, Email, Password, PwdQuestion, PwdAnswer)
-VALUES ('$name', '$address', '$country', '$phone', '$email', '$password', '$passqn', '$passans')";
+$qry = "INSERT INTO Shopper (Name, BirthDate, Address, Country, Phone, Email, Password, PwdQuestion, PwdAnswer)
+VALUES ('$name', '$birthdate', '$address', '$country', '$phone', '$email', '$password', '$passqn', '$passans')";
 
 $duplicate = "SELECT * from Shopper WHERE Email = '$email'";
 
