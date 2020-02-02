@@ -28,8 +28,8 @@ if($result-> num_rows > 0)
         $MainContent .= 
         " <form name='questionans' action='passwordreveal.php' method='post'>
         <div class='form-group row'>
-        <label class='col-sm-3 col-form-label'>Your Password Recovery Question is : </label>
-        <label class='form-control'>$row[PwdQuestion]<br/><br/>
+        <label class='col-sm-3 col-form-label' for= 'passwordqn'>Your Password Recovery Question is : </label>
+        <input class='form-control' name='passwordqn' id= 'passwordqn' value='$row[PwdQuestion]' readonly/><br/><br/>
         <label class='col-sm-3 col-form-label' for='passwordans'>Password Recovery Answer :</label>
         <input class='form-control' name='passwordans' id='passwordans' 
         type='text' required/> (required) <br/><br/>

@@ -4,6 +4,8 @@ session_start();
 $MainContent = "";
 $MainContent .= "<h1 style='text-align:center;'>Password Recovery</h1>";
 $answer = $_POST["passwordans"];
+$question = $_POST["passwordqn"];
+
 
 //include class file for sql conn
 include("mysql.php");
@@ -12,8 +14,8 @@ $conn = new Mysql_Driver();
 
 //connect to db
 $conn->connect();
-//query to check for valid email and retrieve question 
-$checkanswer = "SELECT Password from Shopper WHERE PwdAnswer = '$answer'";
+
+$checkanswer = "SELECT Password from Shopper WHERE PwdAnswer = '$answer' AND PwdQuestion = '$question' ";
 //execute query
 $result = $conn->query($checkanswer);
 
