@@ -2,6 +2,7 @@
 // input for email
 session_start();
 $MainContent = "";
+$MainContent .= "<h1 style='text-align:center;'>Password Recovery</h1>";
 $MainContent .= "<form name='forgotpassword' action='forgotpasswordcheck.php' method='post'>";
 $MainContent .= "<p>Please provide your email for verification.</p>";
 $MainContent .= "<div class='form-group row'>";

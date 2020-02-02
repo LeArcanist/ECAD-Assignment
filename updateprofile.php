@@ -30,6 +30,11 @@ function validateForm()
     }
     return true;  // No error found
 }
+function validateEmail()
+{
+    var name = document.getElementById("email");
+    if (name.value == name.defaultValue) {alert("#email already exists!")};
+}
 </script>
 
 <?php
@@ -43,6 +48,7 @@ include("mysql.php");
 $conn = new Mysql_Driver();
 
 $sessionid =  $_SESSION["ShopperID"];
+$MainContent .= "<h1 style='text-align:center;'>Profile Update</h1>";
 
 //connect to db
 $conn->connect();

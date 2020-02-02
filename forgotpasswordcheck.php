@@ -11,6 +11,8 @@ $conn = new Mysql_Driver();
 
 //connect to db
 $conn->connect();
+
+$MainContent .= "<h1 style='text-align:center;'>Password Recovery</h1>";
 //query to check for valid email and retrieve question 
 $checkemail = "SELECT PwdQuestion from Shopper WHERE Email = '$email'";
 //execute query

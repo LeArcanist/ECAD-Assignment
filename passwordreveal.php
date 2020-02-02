@@ -2,6 +2,7 @@
 
 session_start();
 $MainContent = "";
+$MainContent .= "<h1 style='text-align:center;'>Password Recovery</h1>";
 $answer = $_POST["passwordans"];
 
 //include class file for sql conn
