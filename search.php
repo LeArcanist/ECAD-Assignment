@@ -1,6 +1,15 @@
 <?php 
 // Detect the current session
+include("mysql.php");
 session_start();
+
+// Check if user logged in 
+if (! isset($_SESSION["ShopperName"])) {
+	// redirect to login page if the session variable shopperid is not set
+	header ("Location: login.php");
+	exit;
+}
+
 
 // HTML Form to collect search keyword and submit it to the same page 
 // in server
@@ -24,41 +33,38 @@ $MainContent .= "</div>";
 $MainContent .= "</div>";  // End of 2nd row
 $MainContent .= "</form>";
 
-include("mysql.php");
-$conn = new MySql_Driver();
-$conn->connect();
 
 // The search keyword is sent to server
 if (isset($_GET['keywords'])) {
+	
 	$SearchText=$_GET["keywords"];
+	
+	$conn = new Mysql_Driver();
+	$conn->connect();
 
-    // To Do (DIY): Retrieve list of product records with "ProductTitle" 
-    // contains the keyword entered by shopper, and display them in a table
-    
-    $qry = $qry = "SELECT * FROM product WHERE ProductTitle LIKE '$$SearchText'";
-    $result = $conn->query($qry);
-
-    while ($row = $conn->fetch_array($result))
-    {
-        $MainContent .= "<div class ='row' style='padding:5px'>";
-
-        $product = "productDetails.php?pid=$row[ProductID]";
-        $formattedPrice = number_format($row["Price"], 2);
-        $MainContent .= "<div class='col-8'>";
-        $MainContent .= "<p><a href=$product>$row[ProductTitle]</a></p>";
-        $MainContent .= "Price:<span style='font-weight:bold; color:red;'>
-                        S$ $formattedPrice</span>";
-        $MainContent .= "</div>";
-    
-        $img = "./Images/Products/$row[ProductImage]";
-        $MainContent .= "<div class ='col-4'>";
-        $MainContent .= "<img src='$img' />";
-        $MainContent .= "</div>";
-
-        $MainContent .= "</div>";
-    }
-    
-	// To Do (DIY): End of Code
+	$qry = "SELECT * from product WHERE ProductTitle LIKE '%$SearchText%'";
+	$result = $conn->query($qry);
+	while ($row = $conn->fetch_array($result))
+	{
+			//start a new row
+			$MainContent .= "<div class='row' style='padding:5px'>";
+			//left column - display a text link showing the product's name
+			//Display that selling price in red in a new paragraph
+			$product = "productDetails.php?pid=$row[ProductID]";
+			$formattedPrice = number_format($row["Price"], 2);
+			$MainContent .= "<div class='col-8'>"; // 67% of row width
+			$MainContent .= "<p><a href=$product>$row[ProductTitle]</a></p>";
+			$MainContent .= "Price:<span style='font-weight:bold; color:red;'>
+							S$ $formattedPrice</span>";
+			$MainContent .= "</div>";
+			
+			//Right column
+			$img = "./Images/products/$row[ProductImage]";
+			$MainContent .= "<div class='col-4'>";//33% of row width
+			$MainContent .= "<img src='$img '/>";
+			$MainContent .= "</div>";
+			$MainContent .= "</div>"; //End of row
+	}
 }
 
 $MainContent .= "</div>"; // End of Container
